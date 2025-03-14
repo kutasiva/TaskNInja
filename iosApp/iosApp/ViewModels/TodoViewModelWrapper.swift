@@ -70,6 +70,14 @@ class TodoViewModelWrapper: ObservableObject {
         return todoMapper.mapToSwiftUIModel(dto, randomValues: randomValues)
     }
 
+    func setPriorityFilter(_ priority: Priority?) {
+        selectedPriority = priority
+    }
+
+    func toggleSortOrder() {
+        sortAscending.toggle()
+    }
+
     private func applyFilterAndSort() {
         if let successState = todoState as? TodoState.Success {
             var todos = successState.todos.map { mapToSwiftUIModel($0) }
@@ -83,13 +91,5 @@ class TodoViewModelWrapper: ObservableObject {
             }
             filteredTodos = todos
         }
-    }
-
-    func setPriorityFilter(_ priority: Priority?) {
-        selectedPriority = priority
-    }
-
-    func toggleSortOrder() {
-        sortAscending.toggle()
     }
 }
