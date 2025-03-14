@@ -40,9 +40,7 @@ class TodoViewModelWrapper: ObservableObject {
             return
         }
         if let index = successState.todos.firstIndex(where: { $0.id == updatedItem.id }) {
-            
             let dto = todoMapper.mapToDTO(updatedItem)
-            todoViewModel.updateTodoItem(todo: dto)
             successState.todos[index] = dto
             todoState = successState
             randomValuesStore.updateValues(for: updatedItem)
